@@ -20,6 +20,9 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+# 2. Change these variables for your configuration:
+env:
+  JAVA_VERSION: '11'                         # set this to the java version to use (e.g. '8', '11', '17')
 stages:
 - stage: Build
   displayName: Build stage
@@ -30,6 +33,10 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - name: Setup Java Sdk ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
