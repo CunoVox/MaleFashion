@@ -128,7 +128,7 @@ public class OrderController {
 			jsonRequest.setRedirectUrl(Constant.redirectUrl);
 			jsonRequest.setIpnUrl(Constant.ipnUrl);
 			jsonRequest.setAmount(String.valueOf(Total));
-			jsonRequest.setOrderInfo("Thanh toán Male Fashion.");
+			jsonRequest.setOrderInfo("Thanh toán Sweetiee.");
 			jsonRequest.setRequestId(orderId);
 			jsonRequest.setOrderType(Constant.orderType);
 			jsonRequest.setRequestType(Constant.requestType);
