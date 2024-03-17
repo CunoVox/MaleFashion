@@ -25,6 +25,26 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/icons/icoon.png">
+
+
+	<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/vendor/fontawesome.min.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/vendor/themify-icons.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/vendor/customFonts.css" type="text/css">
+
+	<link rel="stylesheet" href="assets/css/plugins/select2.min.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/swiper.min.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/ion.rangeSlider.min.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/photoswipe.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/photoswipe-default-skin.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/plugins/slick.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/style.min.css" type="text/css">
+
 </head>
 
 <body>
@@ -78,7 +98,6 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-7">
 						<div class="header__top__left">
-							<p>Free shipping, 30-day return or refund guarantee.</p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">
@@ -86,14 +105,14 @@
 							<div class="header__top__links">
 								<a th:if="${session.acc == null}" th:href="@{/signin}">Sign
 									in</a> <a th:if="${session.acc != null}"
-									th:text="${session.acc.user_Name}" style="color: white;"></a> <a
+											  th:text="${session.acc.user_Name}" style="color: white;"></a> <a
 									th:if="${session.acc != null}" th:href="@{/signout}">Sign
-									out</a><a href="#">FAQs</a>
+								out</a><a href="#">FAQs</a>
 							</div>
 							<div class="header__top__hover">
-								<span>Usd <i class="arrow_carrot-down"></i></span>
+								<span>VND <i class="arrow_carrot-down"></i></span>
 								<ul>
-									<li>USD</li>
+									<li>VND</li>
 									<li>EUR</li>
 									<li>USD</li>
 								</ul>
@@ -106,33 +125,31 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
-					<div class="header__logo">
-						<a th:href="@{/home}"><img src="img/logo.png" alt=""></a>
+					<div class="header-logo justify-content-center">
+						<a th:href="@{/home}"><img height="150px" width="350px" src="assets/images/logo/Soft Pink Cute Minimalist Donut Logo Business.png" alt="Learts Logo"></a>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6">
+				<div class="col-lg-6 col-md-6" style="display: flex; align-items: center">
 					<nav class="header__menu mobile-menu">
 						<ul>
 							<li><a th:href="@{/home}">Home</a></li>
-							<li class="active"><a th:href="@{/shop}">Shop</a></li>
-							<li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                	<li><a th:href="@{/cart}">Shopping Cart</a></li>
-                                	<li><a th:href="@{/myprofile}">My Profile</a></li>
-                                	<li><a th:href="@{/myhistory}">My History</a></li>
-                                    <li><a th:href="@{/about}">About Us</a></li>
-                                </ul>
-                            </li>
-							<li><a th:href="@{/blog}">Blog</a></li>
+							<li><a th:href="@{/shop}">Shop</a></li>
+							<li class="active"><a href="#">Pages</a>
+								<ul class="dropdown">
+									<li><a th:href="@{/cart}">Shopping Cart</a></li>
+									<li><a th:href="@{/myprofile}">My Profile</a></li>
+									<li><a th:href="@{/myhistory}">My History</a></li>
+									<li><a th:href="@{/about}">About Us</a></li>
+								</ul></li>
 							<li><a th:href="@{/contact}">Contacts</a></li>
 						</ul>
 					</nav>
 				</div>
-				<div class="col-lg-3 col-md-3">
+				<div class="col-lg-3 col-md-3" style="display: flex; align-items: center; justify-content: center">
 					<div class="header__nav__option">
 						<a href="#" class="search-switch"><img
-							src="img/icon/search.png" alt=""></a> <a href="#"><img
-							src="img/icon/heart.png" alt=""></a> <a href="#"><img
+								src="img/icon/search.png" alt=""></a> <a href="#"><img
+							src="img/icon/heart.png" alt=""></a> <a th:href="@{/cart}"><img
 							src="img/icon/cart.png" alt=""> <span
 							th:text="${session.countCart}"></span></a>
 					</div>
@@ -185,7 +202,7 @@
 											<td class="product__cart__item">
 												<div style="max-width: 90px; max-height: 90px;"
 													class="product__cart__item__pic">
-													<img th:src="${y.product.productImage[0].url_Image}" alt="">
+													<img style="width: 90px; height: 60px; object-fit: cover !important;" th:src="${y.product.productImage[0].url_Image}" alt="">
 												</div>
 
 												<div class="product__cart__item__text">
@@ -195,7 +212,7 @@
 											</td>
 											<td class="quantity__item">
 												<div class="quantity">
-													<div class="pro-qty-2">
+													<div class="pro-qty-2" style="display: flex; align-items: center">
 														<input th:name="'count'+${yStat.index}" type="number"
 															th:value="${y.count}">
 													</div>
@@ -257,10 +274,10 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__logo">
-							<a href="#"><img src="img/footer-logo.png" alt=""></a>
+							<a th:href="@{/home}"><h1 style="display: flex; justify-content: center; font-weight: 800; color: #9e2a2b">Sweetiee</h1></a>
 						</div>
-						<p>The customer is at the heart of our unique business model,
-							which includes design.</p>
+						<p>Be sweet, be twinkle, be you.
+						</p>
 						<a href="#"><img src="img/payment.png" alt=""></a>
 					</div>
 				</div>
@@ -268,16 +285,14 @@
 					<div class="footer__widget">
 						<h6>Shopping</h6>
 						<ul>
-							<li><a href="#">Clothing Store</a></li>
-							<li><a href="#">Trending Shoes</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Sale</a></li>
+							<li><a href="#">Shop</a></li>
+							<li><a href="#">Trending Accessories</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-3 col-sm-6">
 					<div class="footer__widget">
-						<h6>Shopping</h6>
+						<h6>About Us</h6>
 						<ul>
 							<li><a href="#">Contact Us</a></li>
 							<li><a href="#">Payment Methods</a></li>
@@ -306,15 +321,8 @@
 				<div class="col-lg-12 text-center">
 					<div class="footer__copyright__text">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						<p>
-							Copyright ©
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							2020 All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-						</p>
+						<p class="copyright">&copy; 2024 Sweetiee. All Rights Reserved | <strong>(+84) 327 654988</strong> |
+							<a href="mailto:contact@learts.com"> contact@sweetieeaccessories.com</a></p>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 				</div>
