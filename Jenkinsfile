@@ -11,7 +11,7 @@ pipeline {
     APP_NAME    = "male-fashion"
     IMAGE_NAME  = "male-fashion"                 // dùng image local, KHÔNG đẩy registry
     IMAGE_TAG   = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
-    JAVA_HOME   = tool(name: 'jdk-17', type: 'jdk')        // Manage Jenkins > Tools
+    JAVA_HOME   = tool(name: 'jdk-11', type: 'jdk')        // Manage Jenkins > Tools
     MAVEN_HOME  = tool(name: 'maven-3', type: 'maven')     // Manage Jenkins > Tools
     PATH        = "${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${env.PATH}"
     COMPOSE_FILE = "/srv/apps/male-fashion/docker-compose.yml" // nơi Jenkins deploy trên VPS

@@ -1,5 +1,5 @@
 # Jenkins đã build JAR -> chỉ cần JRE để chạy
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:11-jre
 WORKDIR /app
 
 # copy JAR đã build (đừng đổi vị trí build mặc định của Maven)
