@@ -21,6 +21,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 
 @Entity
@@ -65,6 +67,19 @@ public class Order {
 	
 	@OneToMany(mappedBy = "order")
 	private List<Order_Item> order_Item;
+	
+	    // Other fields
+
+	    private LocalDate orderDate;
+
+	    public LocalDate getOrderDate() {
+	        return orderDate;
+	    }
+
+	    public void setOrderDate(LocalDate orderDate) {
+	        this.orderDate = orderDate;
+	    }
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")

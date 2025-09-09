@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResultMoMo {
 	public String t;
 	public String partnerCode;
@@ -19,6 +19,5 @@ public class ResultMoMo {
 	public String message;
 	public String resultCode;
 	public String payUrl;
-
 	public String qrCodeUrl;
 }

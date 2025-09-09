@@ -3,8 +3,8 @@
 
 <head>
 <meta charset="utf-8">
-<title>Sweetiee</title>
-<link rel="icon" href="/assets/images/icons/icoon.png">
+<title>Male-Fashion</title>
+<link rel="icon" href="/img/logo-3.png">
 <!-- Mobile Specific Metas -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,15 +24,13 @@
 
 	<div class="page-content">
 		<div class="form-v7-content">
-<!--			<div class="form-left" style="margin-top: 0px !important; background-color: #fff; display: flex; align-items: center; box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15); -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);">-->
-<!--				<div>-->
-<!--				<img src="/assets/images/logo/logo.jpg" alt="form">-->
-<!--				-->
-<!--				</div>-->
-<!--			</div>-->
+			<div class="form-left">
+				<img src="/colorlib-regform-33/images/form-v7.jpg" alt="form">
+				<p class="text-1">Sign Up</p>
+				<p class="text-2">Privaci policy & Term of service</p>
+			</div>
 			<form th:action="@{/signup}" method="post" class="form-detail"
 				id="myform">
-				<h1 class="text-1" style="color: #c13838; justify-content: center; display: flex">Sign Up</h1>
 				<div class="form-row">
 					<label for="username">USERNAME</label> <input type="text"
 						name="username" id="username" class="input-text">
@@ -60,7 +58,7 @@
 					<p style="color: red;" th:text ="${errorSignUp}"></p>
 				</div>
 				<div class="form-row-last">
-					<input type="submit" style="width: 75%; margin-right: 5%" name="register" class="register"
+					<input type="submit" name="register" class="register"
 						value="Register">
 					<p>
 						Or<a th:href="@{/signin}">Sign in</a>

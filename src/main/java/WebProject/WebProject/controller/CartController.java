@@ -59,6 +59,27 @@ public class CartController {
 			return "shopping-cart";
 		}
 	}
+	@GetMapping("/cartvn")
+	public String CartViewvn(Model model) throws Exception {
+		User user = (User) session.getAttribute("acc");
+		if (user == null) {
+			session.setAttribute("NoSignIn", "Vui lòng đăng nhập trước khi thực hiện thao tác");
+			return "redirect:/home";
+		} else {
+			List<Cart> listCart = cartService.GetAllCartByUser_id(user.getId());
+			int Total = 0;
+			for (Cart y : listCart) {
+				Total = Total + y.getCount() * y.getProduct().getPrice();
+			}
+			if (listCart != null) {
+				model.addAttribute("Total", Total);
+				model.addAttribute("listCart", listCart);
+				session.setAttribute("listCart", listCart);
+				session.setAttribute("Total", Total);
+			}
+			return "cartvn";
+		}
+	}
 
 	@GetMapping("/deleteCart/{id}")
 	public String GetDeleteCart(@PathVariable int id, Model model, HttpServletRequest request) throws Exception {

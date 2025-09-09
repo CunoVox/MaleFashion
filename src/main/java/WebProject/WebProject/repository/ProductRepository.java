@@ -9,12 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import WebProject.WebProject.entity.Product;
-/**
- * @author HOAN HAO
- *
- */
+
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Long>{
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	@Query(value="select * from product p where p.product_name like %?1%",nativeQuery = true)
 	List<Product> findByProduct_NameContaining(String name);
@@ -28,6 +25,9 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
 	Page<Product> findAllByCategory_id(int id, Pageable pageable);
 	
 	Product findById(int id);
+	void deleteProductById(int id);
+	void deleteById(int id);
+	
 	
 	@Query(value="select * from `fashionstore`.product where `fashionstore`.product.product_name like %?1% and `fashionstore`.product.category_id= ?2",nativeQuery = true)
 	Page<Product> findByProduct_NameAndCategory_idContaining(String name, int category_id, Pageable pageable);

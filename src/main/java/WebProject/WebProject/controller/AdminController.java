@@ -2,10 +2,15 @@ package WebProject.WebProject.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,6 +43,7 @@ import WebProject.WebProject.service.Order_ItemService;
 import WebProject.WebProject.service.ProductImageService;
 import WebProject.WebProject.service.ProductService;
 import WebProject.WebProject.service.UserService;
+import java.util.HashMap;
 
 @Controller
 public class AdminController {
@@ -65,8 +71,7 @@ public class AdminController {
 	@Autowired
 	HttpSession session;
 
-	@Autowired
-	ProductImageService productImageService;
+
 
 	@GetMapping("signin-admin")
 	public String SignInAdminView(Model model) {
@@ -163,6 +168,17 @@ public class AdminController {
 			return "dashboard-orders";
 		}
 	}
+	  @Autowired
+	    private ProductImageService productImageService;
+
+	    
+	    @GetMapping("/dashboard-myproducts/delete/{id}")
+	    public String DeleteProduct(@PathVariable int id, HttpServletRequest request) {
+	        String referer = request.getHeader("Referer");
+	        productService.deleteProductById(id);
+	        return "redirect:" + referer;
+	    }
+
 
 	@PostMapping("/send-message")
 	public String SendMessage(Model model, @ModelAttribute("message") String message,
@@ -171,7 +187,7 @@ public class AdminController {
 		System.out.println(message);
 		System.out.println(email);
 		Mail mail = new Mail();
-		mail.setMailFrom("haovo1512@gmail.com");
+		mail.setMailFrom("nxd030902@gmail.com");
 		mail.setMailTo(email);
 		mail.setMailSubject("This is message from Male fashion.");
 		mail.setMailContent(message);
@@ -200,32 +216,45 @@ public class AdminController {
 
 	@GetMapping("dashboard-wallet")
 	public String DashboardWalletView(Model model) {
-		User admin = (User) session.getAttribute("admin");
-		if (admin == null) {
-			return "redirect:/signin-admin";
-		} else {
-			List<Order> listOrder = orderService.findAll();
-			List<Order> listPaymentWithMomo = orderService.findAllByPayment_Method("Payment with momo");
-			List<Order> listPaymentOnDelivery = orderService.findAllByPayment_Method("Payment on delivery");
-			int TotalMomo = 0;
-			int TotalDelivery = 0;
-			for (Order y : listPaymentWithMomo) {
-				TotalMomo = TotalMomo + y.getTotal();
-			}
-			for (Order y : listPaymentOnDelivery) {
-				TotalDelivery = TotalDelivery + y.getTotal();
-			}
-			List<Order> listRecentMomo = orderService.findTop5OrderByPaymentMethod("Payment with momo");
-			List<Order> listRecentDelivery = orderService.findTop5OrderByPaymentMethod("Payment on delivery");
+	    User admin = (User) session.getAttribute("admin");
+	    if (admin == null) {
+	        return "redirect:/signin-admin";
+	    } else {
+	        List<Order> listOrder = orderService.findAll();
+	        List<Order> listPaymentWithMomo = orderService.findAllByPayment_Method("Payment with momo");
+	        List<Order> listPaymentOnDelivery = orderService.findAllByPayment_Method("Payment on delivery");
 
-			model.addAttribute("TotalMomo", TotalMomo);
-			model.addAttribute("TotalDelivery", TotalDelivery);
-			model.addAttribute("TotalOrder", listOrder.size());
-			model.addAttribute("listRecentDelivery", listRecentDelivery);
-			model.addAttribute("listRecentMomo", listRecentMomo);
-			return "dashboard-wallet";
-		}
+	        // Calculate total revenue for each payment method
+	        int TotalMomo = calculateTotalRevenue(listPaymentWithMomo);
+	        int TotalDelivery = calculateTotalRevenue(listPaymentOnDelivery);
+
+	        // Calculate total monthly revenue
+	        int TotalMonthlyRevenue = TotalMomo + TotalDelivery;
+
+	        // Calculate total weekly revenue for the current week
+
+	        List<Order> listRecentMomo = orderService.findTop5OrderByPaymentMethod("Payment with momo");
+	        List<Order> listRecentDelivery = orderService.findTop5OrderByPaymentMethod("Payment on delivery");
+
+	        model.addAttribute("TotalMomo", TotalMomo);
+	        model.addAttribute("TotalDelivery", TotalDelivery);
+	        model.addAttribute("TotalOrder", listOrder.size());
+	        model.addAttribute("TotalMonthlyRevenue", TotalMonthlyRevenue);
+	        model.addAttribute("listRecentDelivery", listRecentDelivery);
+	        model.addAttribute("listRecentMomo", listRecentMomo);
+	        return "dashboard-wallet";
+	    }
 	}
+
+	private int calculateTotalRevenue(List<Order> orders) {
+	    int totalRevenue = 0;
+	    for (Order order : orders) {
+	        totalRevenue += order.getTotal();
+	    }
+	    return totalRevenue;
+	}
+
+	
 
 	@GetMapping("dashboard-myproducts")
 	public String DashboardMyProductView(Model model) {

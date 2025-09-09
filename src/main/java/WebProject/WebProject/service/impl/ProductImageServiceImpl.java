@@ -21,6 +21,12 @@ public class ProductImageServiceImpl implements ProductImageService{
 	public void deleteById(int id) {
 		productImageRepository.deleteById(id);
 	}
+
+	@Override
+	public void deleteProductById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

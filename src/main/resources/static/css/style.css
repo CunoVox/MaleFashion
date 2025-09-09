@@ -320,7 +320,7 @@ ol {
 }
 
 .header__top {
-	background: #ffafc4;
+	background: #111111;
 	padding: 10px 0;
 }
 
@@ -1937,7 +1937,7 @@ ol {
 -----------------------*/
 
 .footer {
-	background: #ffafc4;
+	background: #111111;
 	padding-top: 70px;
 }
 
@@ -1954,7 +1954,7 @@ ol {
 }
 
 .footer__about p {
-	color: #555555;
+	color: #b7b7b7;
 	margin-bottom: 30px;
 }
 
@@ -1977,12 +1977,12 @@ ol {
 }
 
 .footer__widget ul li a {
-	color: #000000;
+	color: #b7b7b7;
 	font-size: 15px;
 }
 
 .footer__widget .footer__newslatter p {
-	color: #000000;
+	color: #b7b7b7;
 }
 
 .footer__widget .footer__newslatter form {
@@ -2037,7 +2037,7 @@ ol {
 }
 
 .footer__copyright__text p {
-	color: #000000;
+	color: #b7b7b7;
 	margin-bottom: 0;
 }
 

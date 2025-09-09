@@ -178,7 +178,7 @@ body {
 	border-bottom: 2px solid #2bb33e;
 }
 .form-v7-content .form-detail .register {
-	background: #ffb8b9;
+	background: #373be3;
 	border-radius: 4px;
 	-o-border-radius: 4px;
 	-ms-border-radius: 4px;
@@ -195,7 +195,7 @@ body {
 	float: left;
 }
 .form-v7-content .form-detail .register:hover {
-	background: #ffb8b9;
+	background: #2a2cb0;
 }
 .form-v7-content .form-detail .form-row-last {
     margin-top: 35px;
@@ -211,7 +211,7 @@ body {
 }
 .form-v7-content .form-detail .form-row-last a {
 	font-size: 16px;
-	color: #c13838;
+	color: #373be3;
 	padding-left: 15px;
 }
 
