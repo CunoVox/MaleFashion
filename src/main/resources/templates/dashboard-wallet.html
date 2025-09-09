@@ -157,6 +157,35 @@
 
 				<!-- Content -->
 				<div class="row">
+				
+				<div class="col-lg-4 col-md-6">
+    <div class="dashboard-stat color-4">
+        <div class="dashboard-stat-content wallet-totals">
+            <h4 th:text="${#numbers.formatDecimal(TotalMonthlyRevenue, 0, 'COMMA', 0, 'POINT')}"></h4>
+            <span>Monthly Revenue<strong class="wallet-currency">VNĐ</strong></span>
+        </div>
+        
+        <div class="dashboard-stat-icon">
+            <i class="im im-icon-Line-Chart"></i>
+        </div>
+    </div>
+</div>
+<!-- Weekly Revenue -->
+<!-- <div class="col-lg-4 col-md-6">
+    <div class="dashboard-stat color-4">
+        <div class="dashboard-stat-content wallet-totals">
+            <h4 th:text="${#numbers.formatDecimal(TotalWeeklyRevenue, 0, 'COMMA', 0, 'POINT')}"></h4>
+            <span>Weekly Revenue<strong class="wallet-currency">VNĐ</strong></span>
+        </div>
+        <div class="dashboard-stat-icon">
+            <i class="im im-icon-Calendar"></i>
+        </div>
+    </div>
+</div> -->
+
+<!-- Existing content of your dashboard-wallet.html -->
+
+<div class="clearfix"></div>
 
 					<!-- Item -->
 					<div class="col-lg-4 col-md-6">

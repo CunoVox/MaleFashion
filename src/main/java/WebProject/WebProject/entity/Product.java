@@ -70,4 +70,8 @@ public class Product {
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private List<Cart> cart;
+
+	public String getName() {
+	    return null;
+	}
 }

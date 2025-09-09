@@ -82,9 +82,22 @@ public class UserController {
 		return "about";
 	}
 
-	@GetMapping("blog")
+	@GetMapping("/blog")
 	public String BlogView(Model model) {
+		
 		return "blog";
+	}
+	@GetMapping("/home1")
+	public String home1Page() {
+		return "home1";
+	}
+	@GetMapping("/shopvn")
+	public String shopPagevn() {
+		return "shopvn";
+	}
+	@GetMapping("/cardvn")
+	public String CartViewvn() {
+		return "cardvn";
 	}
 
 	@PostMapping("/signin")
@@ -242,7 +255,7 @@ public class UserController {
 		if (noSendEmail == null) {
 			int code = (int) Math.floor(((Math.random() * 899999) + 100000));
 			Mail mail = new Mail();
-			mail.setMailFrom("haovo1512@gmail.com");
+			mail.setMailFrom("nxd030902@gmail.com");
 			mail.setMailTo(userForgot.getEmail());
 			mail.setMailSubject("For got Password");
 			mail.setMailContent("Your code is: " + code);

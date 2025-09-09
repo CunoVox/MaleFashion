@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
 <meta charset="UTF-8">
@@ -28,12 +28,8 @@
 </head>
 
 <body>
-	<script th:if="${session.CartIsEmpty != null}">
-		swal("Cart Is Empty!", "", "error");
-	</script>
-	<p th:if="${session.CartIsEmpty != null}"
-		th:text="${#session.setAttribute('CartIsEmpty', null)}"
-		style="display: none;"></p>
+	
+	
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -44,10 +40,8 @@
 	<div class="offcanvas-menu-wrapper">
 		<div class="offcanvas__option">
 			<div class="offcanvas__links">
-				<a th:if="${session.acc == null}" th:href="@{/signin}">Sign in</a> <a
-					th:if="${session.acc != null}" th:text="${session.acc.user_Name}"
-					style="color: white;"></a> <a th:if="${session.acc != null}"
-					th:href="@{/signout}">Sign out</a><a href="#">FAQs</a>
+				 <a
+					style="color: white;">Nguyen Xuan Duc</a> <a href="/signout">Đăng xuất</a><a href="#">FAQs</a>
 			</div>
 			<div class="offcanvas__top__hover">
 				<span>Usd <i class="arrow_carrot-down"></i></span>
@@ -61,12 +55,11 @@
 		<div class="offcanvas__nav__option">
 			<a href="#" class="search-switch"><img src="img/icon/search.png"
 				alt=""></a> <a href="#"><img src="img/icon/heart.png" alt=""></a>
-			<a th:href="@{/cart}"><img src="img/icon/cart.png" alt=""> <span
-							th:text="${session.countCart}"></span></a>
+			<a href="/cart"><img src="img/icon/cart.png" alt=""> <span>2</span></a>
 		</div>
 		<div id="mobile-menu-wrap"></div>
 		<div class="offcanvas__text">
-			<p>Free shipping, 30-day return or refund guarantee.</p>
+			<p>Miễn phí vận chuyển, đảm bảo hoàn trả hoặc hoàn tiền trong 30 ngày.</p>
 		</div>
 	</div>
 	<!-- Offcanvas Menu End -->
@@ -78,17 +71,14 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-7">
 						<div class="header__top__left">
-							<p>Free shipping, 30-day return or refund guarantee.</p>
+							<p>Miễn phí vận chuyển, đảm bảo hoàn trả hoặc hoàn tiền trong 30 ngày.</p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">
 						<div class="header__top__right">
 							<div class="header__top__links">
-								<a th:if="${session.acc == null}" th:href="@{/signin}">Sign
-									in</a> <a th:if="${session.acc != null}"
-									th:text="${session.acc.user_Name}" style="color: white;"></a> <a
-									th:if="${session.acc != null}" th:href="@{/signout}">Sign
-									out</a><a href="#">FAQs</a>
+								 <a style="color: white;">Nguyen Xuan Duc</a> <a
+									href="/signout">Đăng xuất</a><a href="#">FAQs</a>
 							</div>
 							<div class="header__top__hover">
 								<span>Usd <i class="arrow_carrot-down"></i></span>
@@ -109,24 +99,24 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a th:href="@{/home}"><img src="img/logo.png" alt=""></a>
+						<a href="/home"><img src="img/logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<nav class="header__menu mobile-menu">
 						<ul>
-							<li><a th:href="@{/home}">Home</a></li>
-							<li class="active"><a th:href="@{/shop}">Shop</a></li>
-							<li><a href="#">Pages</a>
+							<li><a href="/home">Trang Chủ</a></li>
+							<li class="active"><a href="/shop">Cửa hàng</a></li>
+							<li><a href="#">Trang</a>
                                 <ul class="dropdown">
-                                	<li><a th:href="@{/cart}">Shopping Cart</a></li>
-                                	<li><a th:href="@{/myprofile}">My Profile</a></li>
-                                	<li><a th:href="@{/myhistory}">My History</a></li>
-                                    <li><a th:href="@{/about}">About Us</a></li>
+                                	<li><a th:href="@{/cart}">Giỏ hàng</a></li>
+                                	<li><a th:href="@{/myprofile}">Thông tin cá nhân</a></li>
+                                	<li><a th:href="@{/myhistory}">Lịch sử</a></li>
+                                    <li><a th:href="@{/about}">Thông tin shop</a></li>
                                 </ul>
                             </li>
-							<li><a th:href="@{/blog}">Blog</a></li>
-							<li><a th:href="@{/contact}">Contacts</a></li>
+							<li><a href="/blog">Blog</a></li>
+							<li><a href="/contact">Liên hệ</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -135,8 +125,7 @@
 						<a href="#" class="search-switch"><img
 							src="img/icon/search.png" alt=""></a> <a href="#"><img
 							src="img/icon/heart.png" alt=""></a> <a href="#"><img
-							src="img/icon/cart.png" alt=""> <span
-							th:text="${session.countCart}"></span></a>
+							src="img/icon/cart.png" alt=""> <span>2</span></a>
 					</div>
 				</div>
 			</div>
@@ -153,10 +142,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb__text">
-						<h4>Shopping Cart</h4>
+						<h4>Giỏ hàng</h4>
 						<div class="breadcrumb__links">
-							<a th:href="@{/home}">Home</a> <a th:href="@{/shop}">Shop</a> <span>Shopping
-								Cart</span>
+							<a href="/home">Trang Chủ</a> <a href="/shop">Cửa hàng</a> <span>Giỏ hàng</span>
 						</div>
 					</div>
 				</div>
@@ -175,54 +163,79 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Product</th>
-										<th>Quantity</th>
-										<th>Total</th>
+										<th>Sản phẩm</th>
+										<th>Số lượng</th>
+										<th>Tổng cộng</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-									<th:block th:each="y : ${listCart}">
+									
 										<tr>
 											<td class="product__cart__item">
 												<div style="max-width: 90px; max-height: 90px;"
 													class="product__cart__item__pic">
-													<img th:src="${y.product.productImage[0].url_Image}" alt="">
+													<img src="https://res.cloudinary.com/drlroexjl/image/upload/v1680706874/fashionstore/66047960_432_b_g3rxzr.webp" alt="">
 												</div>
 
 												<div class="product__cart__item__text">
-													<h6 th:text="${y.product.product_Name}"></h6>
-													<h5 th:text="${#numbers.formatDecimal(y.product.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
+													<h6>Giày Converse Chuck 70 High Top</h6>
+													<h5>720,000 VNĐ</h5>
 												</div>
 											</td>
 											<td class="quantity__item">
 												<div class="quantity">
 													<div class="pro-qty-2">
-														<input th:name="'count'+${yStat.index}" type="number"
-															th:value="${y.count}">
+														<input name="count0" type="number"
+															value="1">
 													</div>
 												</div>
 											</td>
-											<td class="cart__price"
-												th:text="${#numbers.formatDecimal(y.product.price * y.count, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+											<td class="cart__price">720,000 VNĐ</td>
 											<td class="cart__close"><a
-												th:href="@{/deleteCart/{id}(id=${y.id})}"><i
+												href="/deleteCart/9"><i
 													class="fa fa-close"></i></a></td>
 										</tr>
-									</th:block>
+									
+										<tr>
+											<td class="product__cart__item">
+												<div style="max-width: 90px; max-height: 90px;"
+													class="product__cart__item__pic">
+													<img src="https://res.cloudinary.com/drlroexjl/image/upload/v1680705958/79978565_001_b_q0jo3j.webp" alt="">
+												</div>
+
+												<div class="product__cart__item__text">
+													<h6>Vải tiêu chuẩn Oliver 2.0 3&quot; Nylon ngắn</h6>
+													<h5>100,000 VNĐ</h5>
+												</div>
+											</td>
+											<td class="quantity__item">
+												<div class="quantity">
+													<div class="pro-qty-2">
+														<input name="count1" type="number"
+															value="1">
+													</div>
+												</div>
+											</td>
+											<td class="cart__price">100,000 VNĐ</td>
+											<td class="cart__close"><a
+												href="/deleteCart/11"><i
+													class="fa fa-close"></i></a></td>
+										</tr>
+									
 								</tbody>
 							</table>
 						</div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="continue__btn">
-									<a th:href="@{/shop}">Continue Shopping</a>
+									<a href="/shop">Tiếp tục mua sắm</a>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
 								<div class="continue__btn update__btn">
 									<button formaction="/updateCart">
-										<i class="fa fa-spinner"></i> Update cart
+										<i class="fa fa-spinner"></i>Cập nhật giỏ hàng
 									</button>
 								</div>
 							</div>
@@ -230,20 +243,19 @@
 					</div>
 					<div class="col-lg-4">
 						<div class="cart__discount">
-							<h6>Discount codes</h6>
+							<h6>Mã giảm giá</h6>
 							<!-- <form action="#"> -->
 							<input type="text" placeholder="Coupon code">
-							<button type="submit">Apply</button>
+							<button type="submit">Áp dụng</button>
 							<!-- </form> -->
 						</div>
 						<div class="cart__total">
-							<h6>Cart total</h6>
+							<h6>Tổng số giỏ hàng</h6>
 							<ul>
-								<li>Customer <span th:text="${session.acc.user_Name}"></span></li>
-								<li>Total <span th:text="${#numbers.formatDecimal(Total, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></li>
+								<li>Khách hàng <span>Nguyen Xuan Duc</span></li>
+								<li>Tổng cộng <span>820,000 VNĐ</span></li>
 							</ul>
-							<a th:href="@{/checkout}" class="primary-btn">Proceed to
-								checkout</a>
+							<a href="/checkout" class="primary-btn">tiến hành kiểm tra</a>
 						</div>
 					</div>
 				</div>
@@ -261,30 +273,30 @@
 						<div class="footer__logo">
 							<a href="#"><img src="img/footer-logo.png" alt=""></a>
 						</div>
-						<p>The customer is at the heart of our unique business model,
-							which includes design.</p>
+						<p>Khách hàng là trung tâm của mô hình kinh doanh độc đáo của chúng tôi,
+							trong đó bao gồm thiết kế.</p>
 						<a href="#"><img src="img/payment.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
 					<div class="footer__widget">
-						<h6>Shopping</h6>
+						<h6>Mua sắm</h6>
 						<ul>
-							<li><a href="#">Clothing Store</a></li>
-							<li><a href="#">Trending Shoes</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Sale</a></li>
+							<li><a href="#">Cửa hàng quần áo</a></li>
+							<li><a href="#">Giày Xu Hướng</a></li>
+							<li><a href="#">Phụ kiện</a></li>
+							<li><a href="#">Doanh thu</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-3 col-sm-6">
 					<div class="footer__widget">
-						<h6>Shopping</h6>
+						<h6>Mua sắm</h6>
 						<ul>
-							<li><a href="#">Contact Us</a></li>
-							<li><a href="#">Payment Methods</a></li>
-							<li><a href="#">Delivary</a></li>
-							<li><a href="#">Return & Exchanges</a></li>
+							<li><a href="#">Liên hệ chúng tôi</a></li>
+							<li><a href="#">Phương thức thanh toán</a></li>
+							<li><a href="#">Vận chuyển</a></li>
+							<li><a href="#">Trả lại & Trao đổi</a></li>
 						</ul>
 					</div>
 				</div>
@@ -292,8 +304,8 @@
 					<div class="footer__widget">
 						<h6>NewLetter</h6>
 						<div class="footer__newslatter">
-							<p>Be the first to know about new arrivals, look books, sales
-								& promos!</p>
+							<p>Hãy là người đầu tiên biết về hàng mới về, lookbook, sale
+								& khuyến mãi!</p>
 							<form action="#">
 								<input type="text" placeholder="Your email">
 								<button type="submit">
@@ -309,13 +321,13 @@
 					<div class="footer__copyright__text">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						<p>
-							Copyright ©
+							Bản quyền ©
 							<script>
 								document.write(new Date().getFullYear());
 							</script>
-							2020 All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
+							2020 Bảo lưu mọi quyền | Mẫu này được thực hiện với <i
+								class="fa fa-heart-o" aria-hidden="true"></i> Bởi <a
+								href="https://colorlib.com" target="_blank">Màu sắc</a>
 						</p>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
@@ -329,7 +341,7 @@
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
-			<form th:action="@{/search}" method="POST" class="search-model-form">
+			<form action="/search" method="POST" class="search-model-form">
 				<input name="search-input" type="text" id="search-input"
 					placeholder="Search here.....">
 			</form>

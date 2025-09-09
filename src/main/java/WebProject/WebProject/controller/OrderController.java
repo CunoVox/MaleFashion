@@ -38,6 +38,10 @@ import momo.MomoModel;
 import momo.ResultMoMo;
 import utils.Constant;
 import utils.Decode;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.OutputStream;
+
 
 @Controller
 public class OrderController {
@@ -243,6 +247,56 @@ public class OrderController {
 		session.setAttribute("order", order);
 		session.setAttribute("invoiceView", "view");
 		return "redirect:/invoice";
+	}
+	@GetMapping("/export-invoice/{orderId}")
+	public void exportInvoiceToExcel(@PathVariable int orderId, HttpServletResponse response) throws Exception {
+	    Order order = orderService.findById(orderId);
+	    List<Order_Item> listOrderItem = order_ItemService.getAllByOrder_Id(order.getId());
+
+	    // Kiểm tra nếu danh sách rỗng hoặc null
+	    if (listOrderItem == null || listOrderItem.isEmpty()) {
+	        throw new Exception("Danh sách Order_Item trống. Không thể xuất Excel.");
+	    }
+
+	    // Tạo một workbook Excel mới
+	    Workbook workbook = new XSSFWorkbook();
+
+	    // Tạo một sheet trong workbook
+	    Sheet sheet = workbook.createSheet("Invoice");
+
+	    // Tạo dòng header
+	    Row headerRow = sheet.createRow(0);
+	    headerRow.createCell(0).setCellValue("Tên Sản Phẩm");
+	    headerRow.createCell(1).setCellValue("Số Lượng");
+	    headerRow.createCell(2).setCellValue("Đơn Giá");
+	    headerRow.createCell(3).setCellValue("Thành Tiền");
+
+	    // Điền dữ liệu vào các dòng
+	    int rowNum = 1;
+	    for (Order_Item orderItem : listOrderItem) {
+	        Row row = sheet.createRow(rowNum++);
+	        // Kiểm tra nếu sản phẩm và tên sản phẩm không null
+	        if (orderItem.getProduct() != null && orderItem.getProduct().getProduct_Name() != null) {
+	            row.createCell(0).setCellValue(orderItem.getProduct().getProduct_Name());
+	        } else {
+	            row.createCell(0).setCellValue("Tên sản phẩm không xác định");
+	        }
+	        row.createCell(1).setCellValue(orderItem.getCount());
+	        row.createCell(2).setCellValue(orderItem.getProduct().getPrice());
+	        row.createCell(3).setCellValue(orderItem.getCount() * orderItem.getProduct().getPrice());
+	    }
+
+	    // Thiết lập các header của response
+	    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	    response.setHeader("Content-Disposition", "attachment; filename=invoice.xlsx");
+
+	    // Ghi workbook vào OutputStream của response
+	    try (OutputStream outputStream = response.getOutputStream()) {
+	        workbook.write(outputStream);
+	    }
+
+	    // Đảm bảo rằng mọi thay đổi đều đã được ghi và đóng workbook
+	    workbook.close();
 	}
 
 	@GetMapping("/myhistory")
